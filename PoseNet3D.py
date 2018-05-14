@@ -67,7 +67,8 @@ class PoseNet3D(object):
         # upscale because we dont upsample the scoremaps anymore
         keypoint_det_fs = list()
         for x in keypoint_det:
-            x[:, :2] *= 8.0
+            if x is not None:
+                x[:, :2] *= 8.0
             keypoint_det_fs.append(x)
         person_det = group_keypoints(keypoint_det_fs, pairwise_scores)  # Use detections and pairwise scores to get final estimation
         # print('Found %d persons' % len(person_det))  # coords in: person_det['person0']['kp'] = None,  person_det['person1']['kp'] = (u, v)
