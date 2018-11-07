@@ -32,10 +32,10 @@ class KinectDataSubscriber:
         self.bridge = CvBridge()
         self.color_sub = rospy.Subscriber(COLOR_IMAGE_TOPIC,
                                           Image,
-                                          self.color_callback, queue_size=1)
+                                          self.color_callback, queue_size=1, buff_size=10000000)
         self.depth_sub = rospy.Subscriber(DEPTH_MAP_TOPIC,
                                           Image,
-                                          self.depth_callback, queue_size=1)
+                                          self.depth_callback, queue_size=1, buff_size=10000000)
 
         # data containers and its mutexes
         self.color_image = None
